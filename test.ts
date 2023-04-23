@@ -5,6 +5,10 @@ const eslint = new ESLint();
 
 const results = await eslint.lintFiles(["**/*.js"]);
 
+const isGitHubActions = Deno.env.get("GITHUB_ACTIONS");
+console.log(isGitHubActions)
+console.log(typeof isGitHubActions)
+
 for(const file of results){
   for(const message of file.messages){
     core.error(message.message, {
