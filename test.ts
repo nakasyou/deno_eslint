@@ -7,7 +7,11 @@ const results = await eslint.lintFiles(["**/*.js"]);
 
 for(const file of results){
   for(const message of file.messages){
-    core.error(message.message, {file: file.filePath, startLine: message.line})
+    core.error(message.message, {
+      file: file.filePath,
+      line: message.line,
+      column: message.column,
+    });
   }
 }
 
