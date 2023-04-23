@@ -37,5 +37,7 @@ for(const file of results){
 }
 
 if(errors[2]!==0){
+  console.log(`✖ ${errors[1]+errors[2]} problems (${errors[1]} errors, ${errors[2]} warnings)
+`)
   Deno.exit(1);
 }
