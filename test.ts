@@ -20,6 +20,7 @@ for(const file of results){
         file: file.filePath,
         line: message.line,
         column: message.column,
+        startLine: message.line,
       });
     }
   }
