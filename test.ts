@@ -1,21 +1,21 @@
-import { ESLint } from "npm:eslint"
-(async function main() {
-    // 1. Create an instance.
-    const eslint = new ESLint();
+import { ESLint } from "npm:eslint";
+import * as core from "npm:@actions/core";
 
-    // 2. Lint files.
-    const results = await eslint.lintFiles(["**/*.js"]);
+const eslint = new ESLint();
 
-    // 3. Format the results.
-    const formatter = await eslint.loadFormatter("stylish");
-    const resultText = formatter.format(results);
+const results = await eslint.lintFiles(["**/*.js"]);
 
-    // 4. Output it.
-    console.log(resultText);
-    if(resultText){
-        Deno.exit(1);
-    }
-})().catch((error) => {
-    console.error(error);
-    Deno.exit(1);
-});
+for(const file of results){
+  for(const message from file.messages){
+    core.error(message.message, {file: file.filePath, startLine: message.line})
+  }
+}
+
+const formatter = await eslint.loadFormatter("stylish");
+
+const resultText = formatter.format(results);
+
+if(resultText){
+  console.log(resultText);
+  Deno.exit(1)
+}
