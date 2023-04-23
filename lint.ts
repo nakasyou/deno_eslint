@@ -17,7 +17,7 @@ for(const file of results){
     
     if(!is_err){
       is_err = true;
-      console.log(file.filePath);
+      console.log("\e[4m"+file.filePath);
     }
     const msg = `  ${message.line}:${message.column}  ${["","warning","error"][message.severity]}  ${message.message}  ${message.ruleId}`;
     
