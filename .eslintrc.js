@@ -11,5 +11,6 @@ module.exports = {
   },
   plugins: [],
   rules: {
+    "semi": ["error", "always"],
   },
 };
