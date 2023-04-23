@@ -12,8 +12,9 @@ import { ESLint } from "npm:eslint"
 
     // 4. Output it.
     console.log(resultText);
-    if(resultText)
-        Deno.exit(0);
+    if(resultText){
+        Deno.exit(1);
+    }
 })().catch((error) => {
     console.error(error);
     Deno.exit(1);
