@@ -38,7 +38,7 @@ for(const file of results){
 }
 
 if(errors[2]!==0){
-  console.log(`\u001b[35m✖ ${errors[1]+errors[2]} problems (${errors[1]} errors, ${errors[2]} warnings)\u001b[39m
+  console.log(`\u001b[31m✖ ${errors[1]+errors[2]} problems (${errors[1]} errors, ${errors[2]} warnings)\u001b[39m
 `)
   Deno.exit(1);
 }
