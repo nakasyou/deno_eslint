@@ -9,6 +9,7 @@ const isGitHubActions = Deno.env.get("GITHUB_ACTIONS") === "true";
 
 let errors = [0,0,0];
 
+console.log("");
 for(const file of results){
   let is_err = false;
   for(const message of file.messages){
