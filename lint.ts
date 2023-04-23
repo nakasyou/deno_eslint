@@ -1,9 +1,18 @@
 import { ESLint } from "npm:eslint";
 import * as core from "npm:@actions/core";
+import { parse } from "https://deno.land/std@0.184.0/flags/mod.ts";
+
+const args: string[] = [...Deno.args];
+const parseGlob = args.pop();
+const flags = parse(args, {
+  boolean: [],
+  string: [],
+  default: {},
+});
 
 const eslint = new ESLint();
 
-const results = await eslint.lintFiles(["**/*.js"]);
+const results = await eslint.lintFiles([parseGlob]);
 
 const isGitHubActions = Deno.env.get("GITHUB_ACTIONS") === "true";
 
