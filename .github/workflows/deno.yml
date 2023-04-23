@@ -36,8 +36,7 @@ jobs:
           key: ${{ runner.os }}-deno-${{ hashFiles('**/*') }}
           restore-keys: ${{ runner.os }}-deno-
           path: |
-            /home/runner/.deno
-            /home/runner/.cache/deno/deps
+            /home/runner/.cache/deno
       - name: get
         run: deno info
       # Uncomment this step to verify the use of 'deno fmt' on each commit.
