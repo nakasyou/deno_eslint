@@ -30,15 +30,12 @@ jobs:
         uses: denoland/setup-deno@9db7f66e8e16b5699a514448ce994936c63f0d54
         with:
           deno-version: v1.x
-      - name: cache deno installation and deno.land dependencies
+      - name: Cache deno
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-deno-${{ hashFiles('**/*') }}
-          restore-keys: ${{ runner.os }}-deno-
-          path: |
-            /home/runner/.cache/deno
-      - name: get
-        run: deno info
+          key: deno-${{ hashFiles('**/*') }}
+          restore-keys: deno
+          path: /home/runner/.cache/deno
       # Uncomment this step to verify the use of 'deno fmt' on each commit.
       # - name: Verify formatting
       #   run: deno fmt --check
