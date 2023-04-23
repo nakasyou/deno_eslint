@@ -31,6 +31,9 @@ for(const file of results){
       console[["","warn","error"][message.severity]](msg);
     }
   }
+  if(is_err){
+    console.log("");
+  }
 }
 
 if(errors[2]!==0){
