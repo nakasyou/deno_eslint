@@ -5,25 +5,21 @@ const eslint = new ESLint();
 
 const results = await eslint.lintFiles(["**/*.js"]);
 
-const isGitHubActions = Deno.env.get("GITHUB_ACTIONS");
-console.log(isGitHubActions)
-console.log(typeof isGitHubActions)
+const isGitHubActions = Deno.env.get("GITHUB_ACTIONS") === "true";
 
 for(const file of results){
+  let is_err = false;
   for(const message of file.messages){
-    core.error(message.message, {
-      file: file.filePath,
-      line: message.line,
-      column: message.column,
-    });
+    if(!is_err){
+      is_err = true;
+      console.log(file.filePath);
+    }
+    if(isGitHubActions){
+     core.error(`${message.line}:${message.column} ${message.message}`, {
+        file: file.filePath,
+        line: message.line,
+        column: message.column,
+      });
+    }
   }
-}
-
-const formatter = await eslint.loadFormatter("stylish");
-
-const resultText = formatter.format(results);
-
-if(resultText){
-  console.log(resultText);
-  Deno.exit(1)
 }
