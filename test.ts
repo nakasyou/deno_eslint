@@ -14,8 +14,9 @@ for(const file of results){
       is_err = true;
       console.log(file.filePath);
     }
+    const msg = `${message.line}:${message.column} ${message.message}`;
     if(isGitHubActions){
-     core.error(`${message.line}:${message.column} ${message.message}`, {
+      core[["","","warning","error"][message.severity]]("    "+msg, {
         file: file.filePath,
         line: message.line,
         column: message.column,
