@@ -22,6 +22,8 @@ for(const file of results){
         column: message.column,
         startLine: message.line,
       });
+    }else{
+      console[["","warn","error"][message.severity]]("    "+["","Warning","Error"][message.severity]+msg);
     }
   }
 }
