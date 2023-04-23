@@ -2,5 +2,5 @@
 eslint for Deno
 ## How to use it
 ```bash
-deno run -A https://deno.land/x/deneslint "*.js"
+deno run -A https://deno.land/x/deneslint/mod.ts "*.js"
 ```
