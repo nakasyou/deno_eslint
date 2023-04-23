@@ -6,7 +6,7 @@ const eslint = new ESLint();
 const results = await eslint.lintFiles(["**/*.js"]);
 
 for(const file of results){
-  for(const message from file.messages){
+  for(const message of file.messages){
     core.error(message.message, {file: file.filePath, startLine: message.line})
   }
 }
