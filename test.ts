@@ -16,7 +16,7 @@ for(const file of results){
     }
     const msg = `${message.line}:${message.column} ${message.message}`;
     if(isGitHubActions){
-      core[["","","warning","error"][message.severity]]("    "+msg, {
+      core[["","warning","error"][message.severity]]("    "+msg, {
         file: file.filePath,
         line: message.line,
         column: message.column,
