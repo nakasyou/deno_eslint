@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "lint": "deno run -A lint.ts"
+  }
+}

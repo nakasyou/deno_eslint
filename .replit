@@ -1,0 +1,20 @@
+run = "deno task lint"
+
+hidden = [".deno"]
+
+[languages.deno]
+pattern = "**/*.{ts,js}"
+[languages.deno.languageServer]
+start = ["deno", "lsp"]
+[languages.deno.languageServer.initializationOptions]
+enable = true
+lint = true
+
+[env]
+DENO_DIR = "/home/runner/${REPL_SLUG}/.deno"
+
+[nix]
+channel = "stable-22_11"
+
+[deployment]
+run = ["sh", "-c", "deno task lint"]
