@@ -1,16 +1,21 @@
-import { ESLint } from "npm:eslint";
-import * as core from "npm:@actions/core";
-import { parse } from "https://deno.land/std@0.184.0/flags/mod.ts";
+import {
+  ESLint,
+  stdFlags,
+  actionsCore,
+} from "./deps.ts";
+import getEslintrc from "./utils/get_eslintrc.ts";
+import eslintrcToDeno from "./utils/eslintrc_to_deno.ts";
 
 const args: string[] = [...Deno.args];
 const parseGlob = args.pop();
-const flags = parse(args, {
+const flags = stdFlags.parse(args, {
   boolean: [],
   string: [],
-  default: {},
 });
-
-const eslint = new ESLint();
+const eslint = new ESLint({
+  useEslintrc: false,
+  overrideConfig: await eslintrcToDeno(await getEslintrc()),
+});
 
 const results = await eslint.lintFiles([parseGlob]);
 
@@ -31,7 +36,7 @@ for(const file of results){
     const msg = `  ${message.line}:${message.column}  ${["","warning","error"][message.severity]}  ${message.message}  ${message.ruleId}`;
     
     if(isGitHubActions){
-      core[["","warning","error"][message.severity]](msg, {
+      actionsCore[["","warning","error"][message.severity]](msg, {
         file: file.filePath,
         line: message.line,
         column: message.column,

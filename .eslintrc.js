@@ -1,16 +1,17 @@
-module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
+export default {
+  "env": {
+    "browser": true,
+    "es2021": true
   },
-  extends: [],
-  parserOptions: {
-    ecmaFeatures: {},
-    ecmaVersion: 12,
-    sourceType: "module",
+  "extends": [],
+  "parser": "npm:@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {},
+    "ecmaVersion": 12,
+    "sourceType": "module"
   },
-  plugins: [],
-  rules: {
-    "semi": ["error", "always"],
-  },
-};
+  "plugins": [],
+  "rules": {
+    "semi": ["error", "always"]
+  }
+}

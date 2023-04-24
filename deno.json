@@ -1,5 +1,5 @@
 {
   "tasks": {
-    "lint": "deno run -A lint.ts"
+    "lint": "deno run -A lint.ts \"./*.js\""
   }
 }
